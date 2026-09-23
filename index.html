@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>Portal do Aluno - UNIFAC</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#e6e6e6;font-family:Arial,Helvetica,sans-serif;color:#222}
+#app{width:100%;max-width:480px;min-height:100vh;margin:0 auto;background:#fff;border-left:1px solid #bbb;border-right:1px solid #bbb}
+header{background:linear-gradient(#fff,#f2f2f2);border-bottom:4px solid #174f87;padding:14px 16px 12px}
+.header-row{display:flex;align-items:center;gap:12px}
+.logo{width:50px;height:50px;border:2px solid #174f87;color:#174f87;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:23px;background:#fff}
+.school{font-size:19px;font-weight:bold;color:#174f87}.subtitle{font-size:12px;color:#666;margin-top:3px}
+.welcome{background:#ededed;border-bottom:1px solid #bbb;padding:8px 16px;font-size:12px;color:#555}
+main{padding:17px 15px 85px}
+.page{display:none}.page.active{display:block}
+h1{font-size:21px;color:#174f87;margin:3px 0 8px;border-bottom:1px solid #bbb;padding-bottom:7px}
+.intro{font-size:13px;line-height:1.5;color:#555;margin-bottom:17px}
+.notice{border:1px solid #aebfce;background:#eef5fb;padding:11px;font-size:12px;line-height:1.45;margin-bottom:17px}
+.menu-title{background:linear-gradient(#28689f,#174f87);color:#fff;font-size:12px;font-weight:bold;padding:8px 10px;margin-top:15px;border:1px solid #123f6b}
+.menu-list{border:1px solid #aaa;border-top:0}
+.menu-item{padding:12px 11px;border-bottom:1px solid #ccc;font-size:13px;background:linear-gradient(#fff,#f3f3f3);display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.menu-item:last-child{border-bottom:0}.menu-item:hover{background:#e8eef3}
+.box{border:1px solid #aaa;margin-top:16px}
+.box-title{background:linear-gradient(#f6f6f6,#dfdfdf);border-bottom:1px solid #aaa;padding:8px 9px;color:#174f87;font-weight:bold;font-size:12px}
+.box-content{padding:11px;font-size:12px;line-height:1.65}
+.data-table{width:100%;border-collapse:collapse;margin-top:13px;font-size:12px}
+.data-table td{border:1px solid #bbb;padding:8px}
+.data-table td:first-child{width:42%;font-weight:bold;background:#eee;color:#555}
+.student-card{border:1px solid #777;background:#fff;margin-top:14px}
+.card-header{background:linear-gradient(#28689f,#174f87);color:#fff;padding:11px 12px}
+.card-school{font-weight:bold;font-size:15px}.card-sub{font-size:10px;margin-top:3px}
+.card-body{padding:13px}
+.student-main{display:flex;gap:13px}
+.photo{width:92px;height:115px;border:1px solid #888;background:#eee;display:flex;align-items:center;justify-content:center;color:#777;font-size:11px;text-align:center;flex:none;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.student-name{font-size:18px;font-weight:bold;color:#174f87;margin:2px 0 10px}
+.row{font-size:12px;margin:7px 0}.row b{display:block;font-size:10px;color:#666;text-transform:uppercase;margin-bottom:2px}
+.card-footer{border-top:1px solid #aaa;background:#eee;padding:10px 12px;font-size:10px;color:#555}
+.status{margin-top:12px;border:1px solid #91ae97;background:#edf7ef;padding:8px 9px;color:#35653d;font-size:11px;font-weight:bold}
+.back{border:1px solid #888;background:linear-gradient(#fff,#ddd);color:#222;padding:7px 11px;margin-bottom:12px;font-size:12px;cursor:pointer;border-radius:2px}
+.bottom-nav{position:fixed;bottom:0;width:100%;max-width:478px;background:#ddd;border-top:1px solid #999;display:flex}
+.nav-btn{width:50%;padding:11px 5px;border:0;border-right:1px solid #aaa;background:linear-gradient(#f4f4f4,#d8d8d8);color:#444;font-size:11px;font-weight:bold;cursor:pointer}
+.nav-btn:last-child{border-right:0}.nav-btn.active{background:linear-gradient(#28689f,#174f87);color:#fff}
+footer{text-align:center;border-top:1px solid #bbb;background:#eee;padding:14px;font-size:10px;color:#777}
+.small-note{font-size:11px;color:#777;margin-top:14px;line-height:1.5}
+</style>
+</head>
+<body>
+<div id="app">
+<header>
+  <div class="header-row">
+    <div class="logo">U</div>
+    <div><div class="school">UNIFAC</div><div class="subtitle">Portal do Aluno</div></div>
+  </div>
+</header>
+
+<div class="welcome">Aluno: <b>Luigi de Lima Galati</b> &nbsp; | &nbsp; Ano letivo: <b>2026</b></div>
+
+<main>
+<section id="home" class="page active">
+  <h1>Área do Aluno</h1>
+  <p class="intro">Bem-vindo ao Portal do Aluno. Utilize as opções abaixo para consultar suas informações escolares.</p>
+
+  <div class="notice"><b>Aviso:</b> mantenha seus dados cadastrais atualizados junto à secretaria da escola.</div>
+
+  <div class="menu-title">SERVIÇOS DISPONÍVEIS</div>
+  <div class="menu-list">
+    <div class="menu-item" onclick="goTo('card')"><span>Carteirinha do Aluno</span><b>›</b></div>
+    <div class="menu-item" onclick="goTo('dados')"><span>Dados Cadastrais</span><b>›</b></div>
+    <div class="menu-item" onclick="goTo('turma')"><span>Informações da Turma</span><b>›</b></div>
+  </div>
+
+  <div class="box">
+    <div class="box-title">Informações do aluno</div>
+    <div class="box-content">
+      <b>Matrícula:</b> 202600123<br>
+      <b>Turma:</b> SIFG<br>
+      <b>Unidade:</b> Unidade Paulista<br>
+      <b>Situação:</b> Regular
+    </div>
+  </div>
+</section>
+
+<section id="dados" class="page">
+  <button class="back" onclick="goTo('home')">‹ Voltar para a página inicial</button>
+  <h1>Dados Cadastrais</h1>
+  <p class="intro">Consulte abaixo os dados cadastrados no sistema da instituição.</p>
+
+  <div class="box">
+    <div class="box-title">Dados pessoais</div>
+    <div class="box-content">
+      <table class="data-table" style="margin-top:0">
+        <tr><td>Nome completo</td><td>Luigi de Lima Galati</td></tr>
+        <tr><td>Data de nascimento</td><td>02/12/2002</td></tr>
+        <tr><td>Matrícula</td><td>202600123</td></tr>
+        <tr><td>Situação</td><td>Regular</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-title">Contato</div>
+    <div class="box-content">
+      <table class="data-table" style="margin-top:0">
+        <tr><td>E-mail</td><td>luigi.galati@aluno.com</td></tr>
+        <tr><td>Telefone</td><td>(11) 93455-7686</td></tr>
+        <tr><td>Cidade</td><td>São Paulo - SP</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="small-note">Para solicitar alteração de dados cadastrais, entre em contato com a secretaria da instituição.</p>
+</section>
+
+<section id="turma" class="page">
+  <button class="back" onclick="goTo('home')">‹ Voltar para a página inicial</button>
+  <h1>Informações da Turma</h1>
+  <p class="intro">Informações referentes à matrícula e à turma do aluno no ano letivo vigente.</p>
+
+  <div class="box">
+    <div class="box-title">Dados acadêmicos</div>
+    <div class="box-content">
+      <table class="data-table" style="margin-top:0">
+        <tr><td>Turma</td><td>SIFG</td></tr>
+        <tr><td>Curso</td><td>Sistemas de Informação</td></tr>
+        <tr><td>Ano letivo</td><td>2026</td></tr>
+        <tr><td>Unidade</td><td>Paulista</td></tr>
+        <tr><td>Período</td><td>Noturno</td></tr>
+        <tr><td>Situação</td><td>Matriculado</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-title">Informações adicionais</div>
+    <div class="box-content">
+      <b>Coordenador:</b> Prof. Carlos Almeida<br>
+      <b>Sala:</b> 204<br>
+      <b>Bloco:</b> B
+    </div>
+  </div>
+</section>
+
+<section id="card" class="page">
+  <button class="back" onclick="goTo('home')">‹ Voltar para a página inicial</button>
+  <h1>Carteirinha do Aluno</h1>
+  <p class="intro">Documento de identificação escolar do aluno regularmente matriculado.</p>
+
+  <div class="student-card">
+    <div class="card-header">
+      <div class="card-school">UNIFAC</div>
+      <div class="card-sub">CARTEIRA DE IDENTIFICAÇÃO ESCOLAR</div>
+    </div>
+
+    <div class="card-body">
+      <div class="student-main">
+        <div class="photo"><img src="carteira.jpeg" alt="Foto do aluno"></div>
+        <div>
+          <div class="student-name">Luigi Galati</div>
+          <div class="row"><b>Matrícula</b>202600123</div>
+          <div class="row"><b>Turma</b>SIFG</div>
+          <div class="row"><b>Ano letivo</b>2026</div>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <tr><td>Data de nascimento</td><td>02/12/2002</td></tr>
+        <tr><td>Unidade</td><td>Paulista</td></tr>
+        <tr><td>Validade</td><td>31/12/2027</td></tr>
+        <tr><td>Situação</td><td>Aluno regular</td></tr>
+      </table>
+
+      <div class="status">✓ MATRÍCULA ATIVA</div>
+    </div>
+
+    <div class="card-footer">
+      Documento escolar<br>
+      ID: 2026-00123
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>UNIFAC © 2026 - Todos os direitos reservados</footer>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-page="home" onclick="goTo('home')">INÍCIO</button>
+  <button class="nav-btn" data-page="card" onclick="goTo('card')">CARTEIRINHA</button>
+</nav>
+</div>
+
+<script>
+function goTo(page){
+  document.querySelectorAll('.page').forEach(function(p){
+    p.classList.remove('active');
+  });
+
+  document.getElementById(page).classList.add('active');
+
+  document.querySelectorAll('.nav-btn').forEach(function(b){
+    b.classList.remove('active');
+  });
+
+  if(page === 'card'){
+    document.querySelector('[data-page="card"]').classList.add('active');
+  }else{
+    document.querySelector('[data-page="home"]').classList.add('active');
+  }
+
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
